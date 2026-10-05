@@ -1,0 +1,198 @@
+/* Style file for index.html
+ * 1 --- Global variable
+ * 2 --- Layout
+  */
+
+  /* ---- Globale variable ----- */
+  :root{
+    --color-body: hsl(205,78%,58%);
+    --color-bg-gradient: linear-gradient(to top, #4407df, #18c0e1);
+    --color-bg-section: hsl(80,50%,90%);
+    --color-font-body: black;
+    --color-board-frame: hsl(15,40%,33%);
+    --color-top-bar: red;
+    --img-board: url('../img/water.webp');
+    --img-cardback: url('../img/BACK.png');
+    --img-cardfront1: url('../img/Normal_bg.webp');
+    --img-cardfront2: url('../img/Pasisve_bg.webp');
+
+  }
+  #zen-explanation{--pos-top:300px; --tilt: 30deg; --pos-left:400px; --front-color: var(--img-cardfront1); z-index: 10;}
+  #zen-participation{--pos-top: 170px; --pos-left:700px; --front-color: var(--img-cardfront2);}
+  #zen-requirements{--pos-top: 100px; --pos-left: 230px; --front-color: var(--img-cardfront1);}
+ 
+ 
+
+
+
+  body{
+    background: var(--color-bg-gradient);
+    height: 100vh;
+    color:var(--color-bg-body);
+}
+
+/* 2 --Layout */
+
+/* relative position */
+
+.page-wrapper{
+    background-image:var(--img-board) ;
+    position: fixed;
+    /* Required: adjust left, top, width, height, make the board in the middle */
+    left: 10%;
+    width: 80%;
+    height: 80vh;
+    /*Required: get the board frame */
+    border: 30px solid var(--color-board-frame);
+    transform-origin: bottom center;
+    transform: perspective(800px) rotateX(25deg) translate(10px,10px) scale(0.9);
+    transform-style: preserve-3d;
+}
+.extra1{
+  /* move it uner the table to make the frame */
+  position: fixed;
+  bottom: 0;
+  left: 14%;
+  width: 1164px;
+  height: 89px;
+  background-color: #502F22;
+}
+/* relative position */
+header abbr{
+  position: relative;
+  top: -4px;
+  font-size: 0.5em;
+  
+}
+
+.intro, .supporting{
+  display:contents;
+}
+
+article{
+  position: absolute;
+  top: var(--pos-top);
+  left:var(--pos-left);
+  /* Required */
+  transform: rotate(var(--tilt, 30deg));
+  background-image: var(--img-cardback);
+   background-size: cover;
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 150px;
+  overflow: hidden;
+  /* Element Model */
+  padding: 5px 10px 20px 8px;
+  border: 2px solid blue;
+  border-radius: 20px 50px
+  transition: all 3s;
+}
+
+article:active{
+  background-image: var(--front-color);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 250px;
+  height: 100vh;
+  transform-origin: 500px 80vh;
+  transform: rotateX(-30deg);
+}
+
+/* Everything inside of block */
+article > *{
+  opacity: 0;
+  transition: opacity 3s; 
+}
+
+article:active >*{
+  opacity: 1;
+}
+
+/* hide the element */
+footer,aside{
+  display: none;
+}
+
+/* Required - Web font/local font, add some text decorations (2/3) */
+header h1{
+  .lato-light{
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2em;
+  }
+}
+
+@font-face {
+  font-family: 'myFont';
+  src: url('../fonts/chunkfive.woff') format('woff'),
+  url('../fonts/chunkfive.svg') format('svg');
+  font-weight: normal;
+  font-style:italic;
+}
+
+header h2{
+  font-family: 'myFont', Arial, Helvetica, sans-serif;
+  font-size: 1.5em;
+}
+a{
+  text-transform: uppercase;
+}
+
+h1{
+  text-align: right;
+}
+
+p{
+  text-align: justify;
+}
+
+/* Underst and display and vsibility, sibling selector*/
+/* All paragraphs which are sibling of h3 will have text-transform: uppercase */
+h3 + p{
+  display: none;
+}
+
+/* More practice on selector */
+article h3:first-letter{
+  font-size: 3em;
+}
+article:first-child{
+  text-shadow: 0.5em 0.1em 2em black;
+  
+}
+
+p:nth-child(2n){
+  box-shadow: -12px -25px -50px black
+}
+
+aside ul{
+  list-style-image: url("../img/star.png");
+}
+
+/* style the footer element */
+footer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  animation: horizontalmove 5s linear infinite;
+}
+
+footer a{
+  background-color: var(--color-top-bar);
+  text-decoration: none;
+}
+
+@keyframes horizontalmove{
+  0%{ transform: translateX(0);}
+  50%{ transform: translateX(100%);}
+  100%{transform: translateX(0);}
+}
+
+
+
+
